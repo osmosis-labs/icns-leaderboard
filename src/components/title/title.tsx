@@ -1,10 +1,9 @@
 import React from "react";
 import { randomArray } from "../../helper/random";
+import { COLORS } from "../../helper/settings";
 import { LetterA } from "../letters/letter-a";
 import { LetterB } from "../letters/letter-b";
 import { LetterD } from "../letters/letter-d";
-
-const COLORS = ["#F4CC3E", "#00B86E", "#FB5232", "#5A4CFA", "#FF77F3"];
 
 const Container = ({ children }: { children: React.ReactElement | string }) => {
   return (
