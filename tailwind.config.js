@@ -24,16 +24,74 @@ module.exports = {
         "400": "#442924",
       },
       text: {
-        "high": "#FFFFFF",
-        "middle": "#A3A3A3",
-        "low": "#5B5B5B",
-        "label": "#424242",
-        "button": "#FFCDC4",
+        main: "#daecd5",
+        high: "#FFFFFF",
+        middle: "#A3A3A3",
+        low: "#5B5B5B",
+        label: "#424242",
+        button: "#FFCDC4",
         "button-disabled": "##FFCDC4",
+      },
+      yellow: {
+        main: "#F4CC3E",
+        light: "#FFE9B1",
+      },
+      green: {
+        main: "#00B86E",
+        light: "#EBFFBF",
+      },
+      red: {
+        main: "#FB5232",
+        light: "#FFCDC4",
+      },
+      purple: {
+        main: "#5A4CFA",
+        light: "#BED4FF",
+      },
+      pink: {
+        main: "#FF77F3",
+        light: "#FFC6FA",
       }
 
     },
-    extend: {},
+    screens: {
+      "3xl": { max: "1792px" },
+      // => @media (max-width: 1792px) { ... }
+
+      "2xl": { max: "1536px" },
+      // => @media (max-width: 1536px) { ... }
+
+      "1.5xl": { max: "1408px" },
+      // => @media (max-width: 1408px) { ... }
+
+      xl: { max: "1280px" },
+      // => @media (max-width: 1280px) { ... }
+
+      "1.5lg": { max: "1152px" },
+      // => @media (max-width: 1152px) { ... }
+
+      lg: { max: "1024px" },
+      // => @media (max-width: 1024px) { ... }
+
+      "1.5md": { max: "896px" },
+      // => @media (max-width: 896px) { ... }
+
+      md: { max: "768px" },
+      // => @media (max-width: 768px) { ... }
+
+      sm: { max: "640px" },
+      // => @media (max-width: 640px) { ... }
+
+      "1.5xs": { max: "600px" },
+      // => @media (max-width: 512px) { ... }
+
+      xs: { max: "420px" },
+    },
+    extend: {
+      boxShadow: {
+        container: "inset 0 0 0 0.05em #333"
+      }
+    },
   },
   plugins: [],
 }
