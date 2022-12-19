@@ -14,7 +14,7 @@ const Container = ({ children }: { children: React.ReactElement | string }) => {
 
 export const Title = () => {
   return (
-    <div className="chillax text-text-main text-[6.5em] font-[600] uppercase flex items-center lg:text-[5.5em]  md:text-[4.5em] 1.5xs:text-[3.5em] xs:text-[2em]">
+    <div className="chillax text-text-main text-[6.5em] font-[600] uppercase flex items-center lg:text-[5.5em] md:text-[4.5em] 1.5xs:text-[3.5em] xs:text-[2em]">
       <Container>l</Container>
       <Container>e</Container>
       <Container>
@@ -23,7 +23,7 @@ export const Title = () => {
           colorTwo={randomArray(COLORS)}
           colorThree={randomArray(COLORS)}
           colorFour={randomArray(COLORS)}
-          className="w-[0.7em] -translate-y-[0.03em] "
+          className="w-[0.7em] max-h-[0.7em] -translate-y-[0.03em] "
         />
       </Container>
       <Container>d</Container>
@@ -35,7 +35,7 @@ export const Title = () => {
           colorTwo={randomArray(COLORS)}
           colorThree={randomArray(COLORS)}
           colorFour={randomArray(COLORS)}
-          className="w-[0.7em] -translate-y-[0.03em] "
+          className="w-[0.7em] max-h-[0.7em] -translate-y-[0.03em] "
         />
       </Container>
       <Container>o</Container>
@@ -47,7 +47,7 @@ export const Title = () => {
           colorTwo={randomArray(COLORS)}
           colorThree={randomArray(COLORS)}
           colorFour={randomArray(COLORS)}
-          className="w-[0.7em] -translate-y-[0.03em] "
+          className="w-[0.7em] max-h-[0.7em] -translate-y-[0.03em] "
         />
       </Container>
     </div>

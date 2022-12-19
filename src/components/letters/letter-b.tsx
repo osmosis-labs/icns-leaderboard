@@ -28,7 +28,7 @@ export const LetterB = ({
       fill={colorTwo}
       d="M0 250h250v250H0zM250 0h125c69.036 0 125 55.964 125 125s-55.964 125-125 125H250V0Z"
     />
-    <path fill={colorThree} d="M0 250h250v250H0zM250 0h125c" />
+    <path fill={colorThree} d="M0 250h250v250H0zM250 0h125" />
     <path
       d="M250 250h125c69.036 0 125 55.964 125 125s-55.964 125-125 125H250V250Z"
       fill={colorFour}

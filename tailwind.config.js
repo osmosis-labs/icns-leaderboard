@@ -90,6 +90,9 @@ module.exports = {
     extend: {
       boxShadow: {
         container: "inset 0 0 0 0.05em #333"
+      },
+      gridTemplateColumns: {
+        'leaderboard-row': '1fr 6fr 3fr',
       }
     },
   },
