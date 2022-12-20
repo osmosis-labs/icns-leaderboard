@@ -1,11 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { compareName, getArray } from "../../helper/array";
+import { half, randomArray } from "../../helper/random";
 import { scrollDown } from "../../helper/scroll";
+import { COLORS } from "../../helper/settings";
 import { useData, User } from "../../providers/data.provider";
 import { Button } from "../button/button";
+import { Star } from "../star/star";
 import { Header, Order, OrderBy } from "./header";
 import { Row, RowSkeleton } from "./row";
+import userImg from "../../assets/images/user.png";
+import { TitleNotFound } from "./title-not-found";
+import { TitleDataNotFound } from "./title-data-not-found";
 
 export const Leaderboard = () => {
   const { data, isLoading } = useData();
@@ -83,6 +89,7 @@ export const Leaderboard = () => {
             />
           );
         })}
+
       {currentData.map(({ name, rank, score }: User, index) => {
         return (
           <Row
@@ -103,6 +110,48 @@ export const Leaderboard = () => {
           />
         );
       })}
+
+      {!isLoading && currentData.length === 0 && (
+        <div className="h-[30em] xs:h-[20em] w-[35em] xs:w-[25em] flex flex-col items-center justify-center bg-black shadow-container relative">
+          {half() && <Star color={randomArray(COLORS)} size={1} left={-0.5} />}
+          {half() && <Star color={randomArray(COLORS)} size={1} right={-0.5} />}
+          {half() && <Star color={randomArray(COLORS)} size={1} top={-0.5} />}
+          {half() && (
+            <Star
+              color={randomArray(COLORS)}
+              size={1}
+              bottom={-0.5}
+              left={-0.5}
+            />
+          )}
+          {half() && (
+            <Star color={randomArray(COLORS)} size={1} top={-0.5} left={-0.5} />
+          )}
+          {half() && (
+            <Star
+              color={randomArray(COLORS)}
+              size={1}
+              bottom={-0.5}
+              right={-0.5}
+            />
+          )}
+          {half() && (
+            <Star
+              color={randomArray(COLORS)}
+              size={1}
+              top={-0.5}
+              right={-0.5}
+            />
+          )}
+          <TitleDataNotFound />
+          <TitleNotFound />
+          <div className="h-full mt-[0em] w-full "></div>
+          <img
+            className="max-h-[10em] mx-auto mb-[5em] xs:mb-[1em]"
+            src={userImg}
+          />
+        </div>
+      )}
       <Button
         onClick={onClickMore}
         className="mt-[5em]"

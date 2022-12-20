@@ -14,6 +14,7 @@ export const Search = () => {
   const { data, isLoading } = useData();
   const navigate = useNavigate();
 
+  console.log("search.tsx -> 17: data", data);
   const [value, setValue] = useState<string>("");
 
   const onChange = ({ value }: { name?: string; value: string }) => {

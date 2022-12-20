@@ -54,6 +54,7 @@ export const DataProvider = ({
   const [data, setData] = useState<User[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [isFetching, setIsFetching] = useState<boolean>(false);
+  const [isFetched, setIsFetched] = useState<boolean>(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -62,9 +63,10 @@ export const DataProvider = ({
         setData(() => dataMock);
         setIsLoading(false);
         setIsFetching(false);
+        setIsFetched(true);
       }, 1000);
     };
-    if (data.length === 0 && !isFetching) {
+    if (data.length === 0 && !isFetching && !isFetched) {
       setIsFetching(() => true);
       fetchData();
     }
