@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
 const dataMock: User[] = [
-  { name: "Alice", score: 900, rank: 1 },
+  { name: "Josette", score: 900, rank: 1 },
   { name: "Bob", score: 800, rank: 2 },
   { name: "Charlie", score: 700, rank: 3 },
   { name: "Dave", score: 600, rank: 4 },
@@ -15,7 +15,7 @@ const dataMock: User[] = [
   { name: "Mike", score: 65, rank: 13 },
   { name: "Nina", score: 55, rank: 14 },
   { name: "Olivia", score: 45, rank: 15 },
-  { name: "Paul", score: 35, rank: 16 },
+  { name: "Alice", score: 35, rank: 16 },
   { name: "Quinn", score: 25, rank: 17 },
   { name: "Rachel", score: 15, rank: 18 },
   { name: "Sam", score: 15, rank: 19 },

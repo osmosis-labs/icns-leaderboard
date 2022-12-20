@@ -19,6 +19,10 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   font-family: "Inter", "Segoe UI", "Roboto", sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -27,6 +31,41 @@ body {
 
 .chillax {
   font-family: Chillax, sans-serif;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  border: 1px solid;
+  @apply border-primary-200;
+  border-radius: 2px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  @apply border-primary-300 !important;
+  border-radius: 2px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  @apply border-primary-400 !important;
+}
+
+.Toastify__toast-theme--colored.Toastify__toast--info {
+  @apply bg-purple-main !important;
+}
+.Toastify__toast-theme--colored.Toastify__toast--success {
+  @apply bg-grey-200 !important;
+}
+.Toastify__toast-theme--colored.Toastify__toast--warning {
+  @apply bg-grey-200 !important;
+}
+.Toastify__toast-theme--colored.Toastify__toast--error {
+  @apply bg-red-main !important;
 }
 
 .gridBackground {
@@ -39,4 +78,27 @@ body {
   background-size: 5em 5em;
   background-position: center;
   font-size: calc(0.4934210526315789vw + 0.506578947368421em);
+}
+
+.skeleton {
+  position: relative;
+  overflow: hidden;
+  background-color: #a3a3a3;
+}
+.skeleton::after {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  transform: translateX(-100%);
+  background: linear-gradient(90deg, #a3a3a3 0%, #fcfcfc88 50%, #a3a3a3 100%);
+  animation: shimmer 1.5s infinite;
+  content: "";
+}
+
+@keyframes shimmer {
+  100% {
+    transform: translateX(100%);
+  }
 }

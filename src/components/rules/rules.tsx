@@ -25,17 +25,17 @@ export const Rules = () => {
       <Title />
       <div className="h-full mt-[0em] ">
         <p className="text-text-high p-2 w-full">
-          You will earn 100 points for using someone's referral
+          You will earn 100 points for using someone's referral.
         </p>
         <p className="text-text-high p-2 w-full">
-          You will earn 100 points for every person you refer
+          You will earn 100 points for every person you refer.
         </p>
         <p className="text-text-high p-2 w-full">
           You will earn ((1/degree)*100) points for every person you refer (50
-          points for every second degree, 33.33 for every third degree, etc.)
+          points for every second degree, 33.33 for every third degree, etc.).
         </p>
         <p className="text-text-high p-2 w-full">
-          Bonus for early registration: you will earn an additional 100 points
+          Bonus for early registration: you will earn an additional 100 points.
         </p>
         <p className="text-text-high p-2 w-full italic text-[0.8em]">
           Note: For any new Twitter accounts created after December 19, 2022, no

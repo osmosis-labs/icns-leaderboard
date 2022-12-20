@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { compareName } from "../../helper/sort";
+import { useNavigate } from "react-router-dom";
+import { compareName, getArray } from "../../helper/array";
+import { scrollDown } from "../../helper/scroll";
 import { useData, User } from "../../providers/data.provider";
+import { Button } from "../button/button";
 import { Header, Order, OrderBy } from "./header";
-import { Row } from "./row";
+import { Row, RowSkeleton } from "./row";
 
 export const Leaderboard = () => {
   const { data, isLoading } = useData();
@@ -10,20 +13,12 @@ export const Leaderboard = () => {
   const [order, setOrder] = useState<Order>("asc");
   const [currentData, setCurrentData] = useState<User[]>([]);
   const [nbRows, setNbRows] = useState<number>(10);
+  const navigate = useNavigate();
 
   const onSort = (orderBy: OrderBy, order: Order) => {
     setOrderBy(orderBy);
     setOrder(order);
   };
-
-  console.log(
-    "%cleaderboard.tsx -> 19 BLUE: setNbRows, isLoading",
-    "background: #2196f3; color:#FFFFFF",
-    setNbRows,
-    isLoading,
-    data,
-    currentData
-  );
 
   useEffect(() => {
     if (!data || data.length === 0) return;
@@ -47,11 +42,47 @@ export const Leaderboard = () => {
         setCurrentData(dataSorted.reverse());
       }
     }
-  }, [data, orderBy, order]);
+  }, [data, orderBy, order, nbRows]);
+
+  const onClickMore = () => {
+    let nextNbRow = 0;
+    if (nbRows < 11) nextNbRow = 20;
+    else if (nbRows < 26) nextNbRow = 50;
+    else nextNbRow = nbRows + 100;
+
+    if (nextNbRow >= data.length) nextNbRow = data.length - 1;
+    setNbRows(() => nextNbRow);
+    scrollDown("html");
+  };
+
+  const onClickRow = (name: string) => {
+    navigate(`/${name}`);
+  };
+
+  let classNameLeader = `mb-[5em] flex flex-col justify-center items-center`;
+  if (nbRows % 2 === 1) classNameLeader = `${classNameLeader} mt-[10em] `;
+  else classNameLeader = `${classNameLeader} mt-[5em] `;
 
   return (
-    <div className="mt-[5em] mb-[5em] flex flex-col justify-center items-center">
+    <div className={classNameLeader}>
       <Header onSort={onSort} order={order} orderBy={orderBy} />
+      {isLoading &&
+        getArray(10).map((_, index) => {
+          return (
+            <RowSkeleton
+              key={index}
+              type={
+                index === 0
+                  ? "first"
+                  : index === 1
+                  ? "second"
+                  : index === 2
+                  ? "third"
+                  : "basic"
+              }
+            />
+          );
+        })}
       {currentData.map(({ name, rank, score }: User, index) => {
         return (
           <Row
@@ -68,9 +99,17 @@ export const Leaderboard = () => {
                 : "basic"
             }
             rank={rank}
+            onClick={onClickRow}
           />
         );
       })}
+      <Button
+        onClick={onClickMore}
+        className="mt-[5em]"
+        disabled={nbRows === data.length - 1 || isLoading}
+      >
+        Load more
+      </Button>
     </div>
   );
 };

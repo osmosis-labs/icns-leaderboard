@@ -4,9 +4,9 @@ import { ArrowIcon } from "../svg/arrow";
 export type OrderBy = "rank" | "name" | "score";
 export type Order = "desc" | "asc";
 interface HeaderProps {
-  onSort: (orderBy: OrderBy, order: Order) => void;
-  orderBy: OrderBy;
-  order: Order;
+  onSort?: (orderBy: OrderBy, order: Order) => void;
+  orderBy?: OrderBy;
+  order?: Order;
 }
 
 export const Header = ({ onSort, order, orderBy }: HeaderProps) => {
@@ -15,7 +15,7 @@ export const Header = ({ onSort, order, orderBy }: HeaderProps) => {
     if (orderBy === orderByNew) {
       orderTmp = order === "asc" ? "desc" : "asc";
     }
-    onSort(orderByNew, orderTmp as Order);
+    if (onSort) onSort(orderByNew, orderTmp as Order);
   };
   const className = "text-text-main ml-2 cursor-pointer flex";
   const classNameOrdered = `${className} font-bold`;
