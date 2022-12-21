@@ -44,6 +44,7 @@ export const Grid = ({ opt }: GridProps) => {
     <div
       className="overflow-hidden grid"
       style={{
+        marginTop: `${rows * 0.00067}em`,
         height: `${rows * 5}em`,
         width: `${columns * 5}em`,
         gridTemplateColumns: ` repeat(${columns} , 5em)`,
@@ -52,8 +53,16 @@ export const Grid = ({ opt }: GridProps) => {
     >
       {items.map((item, index) => {
         if (item)
-          return <RandomShape key={index} className="shadow-container" />;
-        else return <span key={index} className="h-[5em] w-[5em]" />;
+          return (
+            <RandomShape
+              key={index}
+              className="h-[5em] w-[5em] shadow-container"
+            />
+          );
+        else
+          return (
+            <span key={index} className="h-[5em] w-[5em] shadow-containe" />
+          );
       })}
     </div>
   );

@@ -80,17 +80,17 @@ export const Leaderboard = () => {
 
   const opt = {
     xl: {
-      rows: isLoading ? 11 : nbRows + 1,
+      rows: isLoading ? 10 : nbRows % 2 === 0 ? nbRows : nbRows + 1,
       columns: 3,
       nbItem: isLoading ? 3 : (nbRows + 1 * 3) / 5,
     },
     lg: {
-      rows: isLoading ? 11 : nbRows + 1,
+      rows: isLoading ? 10 : nbRows % 2 === 0 ? nbRows : nbRows + 1,
       columns: 2,
       nbItem: isLoading ? 3 : (nbRows + 1 * 2) / 4,
     },
     md: {
-      rows: isLoading ? 11 : nbRows + 1,
+      rows: isLoading ? 10 : nbRows % 2 === 0 ? nbRows : nbRows + 1,
       columns: 1,
       nbItem: isLoading ? 3 : (nbRows + 1 * 1) / 3,
     },
