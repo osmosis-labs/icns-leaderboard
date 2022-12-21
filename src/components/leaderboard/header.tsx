@@ -25,7 +25,7 @@ export const Header = ({ onSort, order, orderBy }: HeaderProps) => {
   const classNameNotOrdered =
     "opacity-0 transition-all duration-[300ms] pl-1  ml-1 rotate-[90deg]";
   return (
-    <div className="bg-primary-200 grid grid-cols-leaderboard-row shadow-container items-center h-[5em] w-[35em] xs:w-[25em]">
+    <div className="bg-primary-200 grid grid-cols-leaderboard-row shadow-container items-center h-[5em] w-[45em] xs:w-[35em]">
       <span
         className={orderBy === "rank" ? classNameOrdered : className}
         onClick={() => {

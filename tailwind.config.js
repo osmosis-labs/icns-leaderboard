@@ -66,7 +66,7 @@ module.exports = {
         container: "inset 0 0 0 0.05em #333"
       },
       gridTemplateColumns: {
-        'leaderboard-row': '1fr 4fr 4fr 2fr',
+        'leaderboard-row': '1fr 3fr 5fr 2fr',
       }
     },
   },
