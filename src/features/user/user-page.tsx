@@ -117,8 +117,8 @@ export const UserPage = () => {
                   rank={user.rank}
                   className={
                     normalize(nameParam ?? "") === normalize(user.name)
-                      ? "xs:w-[25em] w-[35em] bg-grey-500 font-bold"
-                      : "xs:w-[25em] w-[35em] bg-grey-700 font-bold"
+                      ? "xs:w-[35em] w-[45em] bg-grey-500 font-bold"
+                      : "xs:w-[35em] w-[45em] bg-grey-700 font-bold"
                   }
                   twitterName={user.userData.name}
                   twitterUsername={user.userData.username}
