@@ -1,11 +1,20 @@
-import { User } from "../providers/data.provider";
-import { normalize } from "./strings";
+import { User } from "../hooks/reformats/leaderboard";
 
 export const compareName = (userA: User, userB: User) => {
   if (userA.name < userB.name) {
     return -1;
   }
   if (userA.name > userB.name) {
+    return 1;
+  }
+  return 0;
+};
+
+export const compareTwitter = (userA: User, userB: User) => {
+  if (userA.userData.name < userB.userData.name) {
+    return -1;
+  }
+  if (userA.userData.name > userB.userData.name) {
     return 1;
   }
   return 0;
@@ -23,7 +32,7 @@ export function findIndex<T>(array: Array<T>, callback: (value: T) => boolean) {
 }
 
 export const findUser = (name: string, user: User) => {
-  return normalize(user.name).includes(normalize(name as string));
+  return user.name === name;
 };
 
 export function getLinesAroundIndex<T>(

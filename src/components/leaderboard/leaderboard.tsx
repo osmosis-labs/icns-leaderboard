@@ -4,7 +4,6 @@ import { compareName, getArray } from "../../helper/array";
 import { half, randomArray } from "../../helper/random";
 import { scrollDown } from "../../helper/scroll";
 import { COLORS } from "../../helper/settings";
-import { useData, User } from "../../providers/data.provider";
 import { Button } from "../button/button";
 import { Star } from "../star/star";
 import { Header, Order, OrderBy } from "./header";
@@ -12,9 +11,11 @@ import { Row, RowSkeleton } from "./row";
 import userImg from "../../assets/images/user.png";
 import { TitleNotFound } from "./title-not-found";
 import { TitleDataNotFound } from "./title-data-not-found";
+import { useLeaderboard } from "../../hooks/use-api";
+import { User } from "../../hooks/reformats/leaderboard";
 
 export const Leaderboard = () => {
-  const { data, isLoading } = useData();
+  const { data, isLoading } = useLeaderboard();
   const [orderBy, setOrderBy] = useState<OrderBy>("rank");
   const [order, setOrder] = useState<Order>("asc");
   const [currentData, setCurrentData] = useState<User[]>([]);
@@ -30,6 +31,13 @@ export const Leaderboard = () => {
     if (!data || data.length === 0) return;
     const dataTMP = [...data].sort();
     if (orderBy === "name") {
+      // need to sort
+      const cmp = (a: User, b: User) =>
+        order === "asc" ? compareName(a, b) : -compareName(a, b);
+      dataTMP.sort(cmp);
+      const dataSorted = dataTMP.slice(0, nbRows);
+      setCurrentData(dataSorted);
+    } else if (orderBy === "twitter") {
       // need to sort
       const cmp = (a: User, b: User) =>
         order === "asc" ? compareName(a, b) : -compareName(a, b);
@@ -90,23 +98,26 @@ export const Leaderboard = () => {
           );
         })}
 
-      {currentData.map(({ name, rank, score }: User, index) => {
+      {currentData.map((user, index) => {
         return (
           <Row
-            key={`${name} - ${index}`}
-            name={name}
-            score={score}
+            key={`${user.name} - ${index}`}
+            name={user.name}
+            score={user.points}
             type={
-              rank === 1
+              user.rank === 1
                 ? "first"
-                : rank === 2
+                : user.rank === 2
                 ? "second"
-                : rank === 3
+                : user.rank === 3
                 ? "third"
                 : "basic"
             }
-            rank={rank}
+            rank={user.rank}
             onClick={onClickRow}
+            twitterName={user.userData.name}
+            twitterUsername={user.userData.username}
+            twitterImage={user.userData.profileImageUrl}
           />
         );
       })}

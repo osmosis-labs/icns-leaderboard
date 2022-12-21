@@ -40,19 +40,20 @@ body {
 /* Track */
 ::-webkit-scrollbar-track {
   border: 1px solid;
-  @apply border-primary-200;
+  @apply border-grey-200 !important;
   border-radius: 2px;
+  @apply bg-grey-200 !important;
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  @apply border-primary-300 !important;
+  @apply bg-grey-500 !important;
   border-radius: 2px;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  @apply border-primary-400 !important;
+  @apply bg-grey-600 !important;
 }
 
 .Toastify__toast-theme--colored.Toastify__toast--info {

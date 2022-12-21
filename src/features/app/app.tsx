@@ -2,9 +2,8 @@ import React from "react";
 import { Home } from "../home/home";
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import { DataProvider } from "../../providers/data.provider";
 import { ToastContainer } from "react-toastify";
-import { User } from "../user/user";
+import { UserPage } from "../user/user-page";
 import { NotFound } from "../not-found/not-found";
 
 export const App = () => {
@@ -15,7 +14,7 @@ export const App = () => {
     },
     {
       path: "/:name",
-      element: <User />,
+      element: <UserPage />,
     },
     { path: "*", element: <NotFound /> },
   ]);
@@ -23,9 +22,7 @@ export const App = () => {
   return (
     <div className="gridBackground h-full w-full min-h-screen relative">
       <ToastContainer autoClose={2000} theme="colored" />
-      <DataProvider>
-        <RouterProvider router={router} />
-      </DataProvider>
+      <RouterProvider router={router} />
     </div>
   );
 };

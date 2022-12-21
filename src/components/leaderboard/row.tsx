@@ -1,10 +1,14 @@
 import React from "react";
+import { Image } from "../image/image";
 import { Skeleton } from "../skeleton/skeleton";
 
 interface RowProps {
   name: string;
   score: number;
   rank: number;
+  twitterName: string;
+  twitterUsername: string;
+  twitterImage: string;
   type?: "first" | "second" | "third" | "basic" | "custom";
   className?: string;
   onClick?: (name: string) => void;
@@ -17,6 +21,9 @@ export const Row = ({
   rank,
   className,
   onClick,
+  twitterImage,
+  twitterName,
+  twitterUsername,
 }: RowProps) => {
   const onClickRow = () => {
     if (onClick) {
@@ -47,14 +54,25 @@ export const Row = ({
   return (
     <div className={classNameRow} onClick={onClickRow}>
       <p className="text-text-main ml-2">#{rank}</p>
-      <p className="text-text-main ml-2">{name}</p>
+      <p className="text-text-main ml-2 truncate hover:text-clip">{name}</p>
+      <div className="text-text-main ml-2 grid grid-cols-[2em_1fr] items-center">
+        <Image className="h-[2em] bg-grey-600" src={twitterImage} />
+
+        <a
+          target="_blank"
+          className="ml-[6px] truncate hover:text-clip"
+          href={`https://twitter.com/${twitterUsername}`}
+        >
+          {twitterName}
+        </a>
+      </div>
       <p className="text-text-main ml-2">{score}</p>
     </div>
   );
 };
 
 export const RowSkeleton = ({ type = "basic" }: Partial<RowProps>) => {
-  let classNameRow = `grid grid-cols-leaderboard-row shadow-container items-center h-[5em]`;
+  let classNameRow = `grid grid-cols-leaderboard-row shadow-container items-center h-[5em] `;
   if (type === "basic") {
     classNameRow = `${classNameRow} xs:w-[25em] w-[25em] bg-grey-800 `;
   } else if (type === "third") {
@@ -68,6 +86,10 @@ export const RowSkeleton = ({ type = "basic" }: Partial<RowProps>) => {
     <div className={classNameRow}>
       <Skeleton height="1.2em" width="1.5em" className="ml-2 opacity-75" />
       <Skeleton height="1.2em" width="10em" className="ml-2 opacity-75" />
+      <div className="text-text-main ml-2 grid grid-cols-[2em_1fr] items-center">
+        <Skeleton height="2em" width="2em" className="ml-2 opacity-75" />
+        <Skeleton height="1.2em" width="3em" className="opacity-75 ml-[12px]" />
+      </div>
       <Skeleton height="1.2em" width="3em" className="ml-2 opacity-75" />
     </div>
   );

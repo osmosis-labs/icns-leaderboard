@@ -5,7 +5,6 @@ import { Star } from "../../components/star/star";
 import { half, randomArray } from "../../helper/random";
 import { COLORS } from "../../helper/settings";
 import { useNavigate, useParams } from "react-router-dom";
-import { useData, User as UserData } from "../../providers/data.provider";
 import { Button } from "../../components/button/button";
 import { Row, RowSkeleton } from "../../components/leaderboard/row";
 import { toast } from "react-toastify";
@@ -14,25 +13,29 @@ import { findUser, getArray, getLinesAroundIndex } from "../../helper/array";
 import { TitleUser } from "./title-user";
 import userImg from "../../assets/images/user.png";
 import { normalize } from "../../helper/strings";
+import { useLeaderboard } from "../../hooks/use-api";
+import { User } from "../../hooks/reformats/leaderboard";
 
-export const User = () => {
-  let { name } = useParams();
-  const { data, isLoading } = useData();
-  const [currentData, setCurrentData] = useState<UserData[]>([]);
+export const UserPage = () => {
+  let { name: nameParam } = useParams();
+  const { data, isLoading } = useLeaderboard();
+  const [currentData, setCurrentData] = useState<User[]>([]);
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (name && name !== undefined && data.length > 0) {
-      const index = data.findIndex((user) => findUser(name as string, user));
+    if (nameParam && nameParam !== undefined && data.length > 0) {
+      const index = data.findIndex((user) =>
+        findUser(nameParam as string, user)
+      );
       if (index !== -1) {
         // Need to take 5 rows (must 2 before, 2 after)
-        let rows = getLinesAroundIndex<UserData>(index, data, 5);
+        let rows = getLinesAroundIndex<User>(index, data, 5);
         setCurrentData(rows);
       } else {
         toast.info("Sorry, we did not find you.");
       }
     }
-  }, [data, name]);
+  }, [data, nameParam]);
 
   const onClickHome = () => {
     navigate(`/`);
@@ -86,24 +89,25 @@ export const User = () => {
         )}
         {!isLoading &&
           currentData.length > 0 &&
-          currentData.map(
-            ({ name: userName, rank, score }: UserData, index: number) => {
-              return (
-                <Row
-                  key={`${userName} - ${index}`}
-                  name={userName}
-                  score={score}
-                  type={"custom"}
-                  rank={rank}
-                  className={
-                    normalize(name ?? "") === normalize(userName)
-                      ? "xs:w-[25em] w-[35em] bg-grey-500 font-bold"
-                      : "xs:w-[25em] w-[35em] bg-grey-700 font-bold"
-                  }
-                />
-              );
-            }
-          )}
+          currentData.map((user, index: number) => {
+            return (
+              <Row
+                key={`${user.name} - ${index}`}
+                name={user.name}
+                score={user.points}
+                type={"custom"}
+                rank={user.rank}
+                className={
+                  normalize(nameParam ?? "") === normalize(user.name)
+                    ? "xs:w-[25em] w-[35em] bg-grey-500 font-bold"
+                    : "xs:w-[25em] w-[35em] bg-grey-700 font-bold"
+                }
+                twitterName={user.userData.name}
+                twitterUsername={user.userData.username}
+                twitterImage={user.userData.profileImageUrl}
+              />
+            );
+          })}
         {!isLoading && currentData.length === 0 && (
           <div className="h-[25em] xs:h-[25em] w-[35em] xs:w-[25em] flex flex-col items-center justify-center bg-black shadow-container relative">
             {half() && (
@@ -148,10 +152,13 @@ export const User = () => {
             <TitleUser />
             <div className="h-full mt-[0em] w-full ">
               <p className="text-text-high p-2 w-full">
-                The user {name} was not found.
+                The user {nameParam} was not found.
               </p>
               <p className="text-text-high p-2 w-full">
-                Go back to home and try to find it.
+                The name is case sentisitive, be careful.
+              </p>
+              <p className="text-text-high p-2 w-full">
+                Maybe the Twitter account was created after December 19, 2022.
               </p>
             </div>
             <img className="max-h-[10em] mx-auto mb-2" src={userImg} />

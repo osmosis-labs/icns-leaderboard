@@ -1,7 +1,7 @@
 import React from "react";
 import { ArrowIcon } from "../svg/arrow";
 
-export type OrderBy = "rank" | "name" | "score";
+export type OrderBy = "rank" | "name" | "score" | "twitter";
 export type Order = "desc" | "asc";
 interface HeaderProps {
   onSort?: (orderBy: OrderBy, order: Order) => void;
@@ -54,6 +54,24 @@ export const Header = ({ onSort, order, orderBy }: HeaderProps) => {
         <ArrowIcon
           className={
             orderBy === "name"
+              ? order === "asc"
+                ? classOrderUp
+                : classOrderDown
+              : classNameNotOrdered
+          }
+          color="#FFF"
+        />
+      </span>
+      <span
+        className={orderBy === "twitter" ? classNameOrdered : className}
+        onClick={() => {
+          onClickSort("twitter");
+        }}
+      >
+        <p>Twitter</p>
+        <ArrowIcon
+          className={
+            orderBy === "twitter"
               ? order === "asc"
                 ? classOrderUp
                 : classOrderDown

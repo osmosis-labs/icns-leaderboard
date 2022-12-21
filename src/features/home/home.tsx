@@ -8,6 +8,7 @@ import { Rules } from "../../components/rules/rules";
 import { COLORS } from "../../helper/settings";
 import { Search } from "../../components/search/search";
 import { GoTop } from "../../components/go-top/go-top";
+import { Total } from "../../components/total/total";
 
 export const Home = () => {
   const classNameHome = `w-full h-full flex flex-col justify-center items-center min-h-screen pl-[0.125em] pt-[0.125em] overflow-auto`;
@@ -15,7 +16,7 @@ export const Home = () => {
     <div className={classNameHome} id="home">
       <GoTop />
 
-      <div className="bg-black h-[5em] w-[15em] mt-[5em] xs:mt-[0em] flex justify-center items-center shadow-container">
+      <div className="bg-black h-[5em] w-[15em] mt-[10em] xs:mt-[5em] flex justify-center items-center shadow-container">
         <img className="" src={logoLetter} alt="logo" />
       </div>
 
@@ -40,6 +41,8 @@ export const Home = () => {
       </div>
 
       <Rules />
+
+      <Total />
       <Leaderboard />
       <Search />
     </div>

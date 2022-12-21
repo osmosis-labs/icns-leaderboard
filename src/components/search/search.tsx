@@ -4,17 +4,16 @@ import { toast } from "react-toastify";
 import { findUser } from "../../helper/array";
 import { half, randomArray } from "../../helper/random";
 import { COLORS } from "../../helper/settings";
-import { useData } from "../../providers/data.provider";
+import { useLeaderboard } from "../../hooks/use-api";
 import { Button } from "../button/button";
 import { Input } from "../input/input";
 import { Star } from "../star/star";
 import { Title } from "./title";
 
 export const Search = () => {
-  const { data, isLoading } = useData();
+  const { data, isLoading } = useLeaderboard();
   const navigate = useNavigate();
 
-  console.log("search.tsx -> 17: data", data);
   const [value, setValue] = useState<string>("");
 
   const onChange = ({ value }: { name?: string; value: string }) => {
@@ -25,18 +24,17 @@ export const Search = () => {
     if (value.length > 2) {
       const dataFinded = data.find((user) => findUser(value, user));
       setValue("");
-      console.log("search.tsx -> 19: valuie", dataFinded);
       if (dataFinded) {
         toast.info(
           `${dataFinded.name} has been found! You are redirecting to his page.`
         );
         navigate(`/${dataFinded.name}`);
       } else {
-        toast.info("Sorry, we did not find you.");
+        toast.info("Sorry, we did not find the user.");
       }
     }
   };
-  let classSearch = `mb-[5em] flex flex-col justify-center items-center`;
+  let classSearch = `mb-[5em] xs:mb-[0em] flex flex-col justify-center items-center`;
 
   return (
     <div className={classSearch}>
@@ -70,6 +68,9 @@ export const Search = () => {
         <div className="h-full mt-[0em] ">
           <p className="text-text-high p-2 w-full">
             Look for yourself and see your rank.
+          </p>
+          <p className="text-text-high p-2 w-full">
+            The name is case sentisitive, be careful.
           </p>
         </div>
       </div>
