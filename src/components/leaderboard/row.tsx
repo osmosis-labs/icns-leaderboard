@@ -34,16 +34,16 @@ export const Row = ({
   let classNameRowHover = `cursor-pointer transition-all duration-150`;
   if (type === "basic" || !type) {
     classNameRow = `${classNameRow} xs:w-[25em] w-[25em] bg-grey-800 `;
-    classNameRowHover = `${classNameRowHover} hover:w-[26em]`;
+    classNameRowHover = `${classNameRowHover} hover:scale-105`;
   } else if (type === "third") {
-    classNameRow = `${classNameRow} xs:w-[25em] w-[27.5em] bg-grey-700 font-bold`;
-    classNameRowHover = `${classNameRowHover} hover:xs:w-[26em] hover:w-[28.5em]`;
+    classNameRow = `${classNameRow} xs:w-[25em] w-[27.5em] w-[27.5em] bg-grey-700 font-bold`;
+    classNameRowHover = `${classNameRowHover} hover:scale-105`;
   } else if (type === "second") {
     classNameRow = `${classNameRow} xs:w-[25em] w-[30em] bg-grey-500 font-bold`;
-    classNameRowHover = `${classNameRowHover}  hover:xs:w-[26em] hover:w-[31em]`;
+    classNameRowHover = `${classNameRowHover}  hover:scale-105`;
   } else if (type === "first") {
     classNameRow = `${classNameRow} xs:w-[25em] w-[35em] bg-grey-300 font-bold`;
-    classNameRowHover = `${classNameRowHover}  hover:xs:w-[26em] hover:w-[36em]`;
+    classNameRowHover = `${classNameRowHover}   hover:scale-105`;
   } else if (type === "custom") {
     classNameRow = `${classNameRow} ${className}`;
     classNameRowHover = `${classNameRowHover} `;
