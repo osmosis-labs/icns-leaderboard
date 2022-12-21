@@ -178,7 +178,8 @@ export const UserPage = () => {
                   The name is case sentisitive, be careful.
                 </p>
                 <p className="text-text-high p-2 w-full">
-                  Maybe the Twitter account was created after December 19, 2022.
+                  Either the account has not been registered on ICNS or the
+                  twitter account has been created after December 19, 2022.
                 </p>
               </div>
               <img className="max-h-[10em] mx-auto mb-2" src={userImg} />
