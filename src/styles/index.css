@@ -79,8 +79,23 @@ body {
   background-size: 5em 5em;
   background-position: center;
   font-size: calc(0.4934210526315789vw + 0.506578947368421em);
+  z-index: 1;
 }
-
+/* 
+.grid-background {
+  position: absolute;
+  z-index: -1;
+  height: 100%;
+  width: 100%;
+  opacity: 0.5;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 5em);
+  grid-template-rows: repeat(200, 5em);
+  overflow: hidden;
+  margin: 0;
+  padding: 1em;
+  place-items: center;
+} */
 .skeleton {
   position: relative;
   overflow: hidden;

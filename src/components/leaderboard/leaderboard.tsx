@@ -13,6 +13,7 @@ import { TitleNotFound } from "./title-not-found";
 import { TitleDataNotFound } from "./title-data-not-found";
 import { useLeaderboard } from "../../hooks/use-api";
 import { User } from "../../hooks/reformats/leaderboard";
+import { Grid } from "../grid/grid";
 
 export const Leaderboard = () => {
   const { data, isLoading } = useLeaderboard();
@@ -73,103 +74,136 @@ export const Leaderboard = () => {
     navigate(`/${name}`);
   };
 
-  let classNameLeader = `mb-[5em] flex flex-col justify-center items-center`;
+  let classNameLeader = `mb-[0em] flex flex-col justify-center items-center`;
   if (nbRows % 2 === 1) classNameLeader = `${classNameLeader} mt-[10em] `;
   else classNameLeader = `${classNameLeader} mt-[5em] `;
 
+  const opt = {
+    xl: {
+      rows: isLoading ? 11 : nbRows + 1,
+      columns: 3,
+      nbItem: isLoading ? 3 : (nbRows + 1 * 3) / 5,
+    },
+    lg: {
+      rows: isLoading ? 11 : nbRows + 1,
+      columns: 2,
+      nbItem: isLoading ? 3 : (nbRows + 1 * 2) / 4,
+    },
+    md: {
+      rows: isLoading ? 11 : nbRows + 1,
+      columns: 1,
+      nbItem: isLoading ? 3 : (nbRows + 1 * 1) / 3,
+    },
+    sm: null,
+    xs: null,
+  };
+
   return (
-    <div className={classNameLeader}>
-      <Header onSort={onSort} order={order} orderBy={orderBy} />
-      {isLoading &&
-        getArray(10).map((_, index) => {
+    <div className="flex items-center justify-center">
+      <Grid opt={opt} />
+      <div className={classNameLeader}>
+        <Header onSort={onSort} order={order} orderBy={orderBy} />
+        {isLoading &&
+          getArray(10).map((_, index) => {
+            return (
+              <RowSkeleton
+                key={index}
+                type={
+                  index === 0
+                    ? "first"
+                    : index === 1
+                    ? "second"
+                    : index === 2
+                    ? "third"
+                    : "basic"
+                }
+              />
+            );
+          })}
+
+        {currentData.map((user, index) => {
           return (
-            <RowSkeleton
-              key={index}
+            <Row
+              key={`${user.name} - ${index}`}
+              name={user.name}
+              score={user.points}
               type={
-                index === 0
+                user.rank === 1
                   ? "first"
-                  : index === 1
+                  : user.rank === 2
                   ? "second"
-                  : index === 2
+                  : user.rank === 3
                   ? "third"
                   : "basic"
               }
+              rank={user.rank}
+              onClick={onClickRow}
+              twitterName={user.userData.name}
+              twitterUsername={user.userData.username}
+              twitterImage={user.userData.profileImageUrl}
             />
           );
         })}
 
-      {currentData.map((user, index) => {
-        return (
-          <Row
-            key={`${user.name} - ${index}`}
-            name={user.name}
-            score={user.points}
-            type={
-              user.rank === 1
-                ? "first"
-                : user.rank === 2
-                ? "second"
-                : user.rank === 3
-                ? "third"
-                : "basic"
-            }
-            rank={user.rank}
-            onClick={onClickRow}
-            twitterName={user.userData.name}
-            twitterUsername={user.userData.username}
-            twitterImage={user.userData.profileImageUrl}
-          />
-        );
-      })}
-
-      {!isLoading && currentData.length === 0 && (
-        <div className="h-[30em] xs:h-[20em] w-[35em] xs:w-[25em] flex flex-col items-center justify-center bg-black shadow-container relative">
-          {half() && <Star color={randomArray(COLORS)} size={1} left={-0.5} />}
-          {half() && <Star color={randomArray(COLORS)} size={1} right={-0.5} />}
-          {half() && <Star color={randomArray(COLORS)} size={1} top={-0.5} />}
-          {half() && (
-            <Star
-              color={randomArray(COLORS)}
-              size={1}
-              bottom={-0.5}
-              left={-0.5}
+        {!isLoading && currentData.length === 0 && (
+          <div className="h-[30em] xs:h-[20em] w-[35em] xs:w-[25em] flex flex-col items-center justify-center bg-black shadow-container relative">
+            {half() && (
+              <Star color={randomArray(COLORS)} size={1} left={-0.5} />
+            )}
+            {half() && (
+              <Star color={randomArray(COLORS)} size={1} right={-0.5} />
+            )}
+            {half() && <Star color={randomArray(COLORS)} size={1} top={-0.5} />}
+            {half() && (
+              <Star
+                color={randomArray(COLORS)}
+                size={1}
+                bottom={-0.5}
+                left={-0.5}
+              />
+            )}
+            {half() && (
+              <Star
+                color={randomArray(COLORS)}
+                size={1}
+                top={-0.5}
+                left={-0.5}
+              />
+            )}
+            {half() && (
+              <Star
+                color={randomArray(COLORS)}
+                size={1}
+                bottom={-0.5}
+                right={-0.5}
+              />
+            )}
+            {half() && (
+              <Star
+                color={randomArray(COLORS)}
+                size={1}
+                top={-0.5}
+                right={-0.5}
+              />
+            )}
+            <TitleDataNotFound />
+            <TitleNotFound />
+            <div className="h-full mt-[0em] w-full "></div>
+            <img
+              className="max-h-[10em] mx-auto mb-[5em] xs:mb-[1em]"
+              src={userImg}
             />
-          )}
-          {half() && (
-            <Star color={randomArray(COLORS)} size={1} top={-0.5} left={-0.5} />
-          )}
-          {half() && (
-            <Star
-              color={randomArray(COLORS)}
-              size={1}
-              bottom={-0.5}
-              right={-0.5}
-            />
-          )}
-          {half() && (
-            <Star
-              color={randomArray(COLORS)}
-              size={1}
-              top={-0.5}
-              right={-0.5}
-            />
-          )}
-          <TitleDataNotFound />
-          <TitleNotFound />
-          <div className="h-full mt-[0em] w-full "></div>
-          <img
-            className="max-h-[10em] mx-auto mb-[5em] xs:mb-[1em]"
-            src={userImg}
-          />
-        </div>
-      )}
-      <Button
-        onClick={onClickMore}
-        className="mt-[5em]"
-        disabled={nbRows === data.length - 1 || isLoading}
-      >
-        Load more
-      </Button>
+          </div>
+        )}
+        <Button
+          onClick={onClickMore}
+          className="mt-[5em]"
+          disabled={nbRows === data.length - 1 || isLoading}
+        >
+          Load more
+        </Button>
+      </div>
+      <Grid opt={opt} />
     </div>
   );
 };

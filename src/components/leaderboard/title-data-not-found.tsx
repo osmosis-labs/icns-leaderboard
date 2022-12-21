@@ -7,7 +7,7 @@ import { LetterD } from "../letters/letter-d";
 
 export const TitleDataNotFound = () => {
   return (
-    <div className="chillax text-text-main text-[4em] font-[600] uppercase flex items-center lg:text-[4em] md:text-[3.5em] 1.5xs:text-[3.5em] xs:text-[2em]">
+    <div className="chillax text-text-main text-[4em] font-[600] uppercase flex items-center lg:text-[4em] md:text-[3.5em] sm:text-[3.5em] xs:text-[2em]">
       <Container>
         <LetterD
           colorOne={randomArray(COLORS)}

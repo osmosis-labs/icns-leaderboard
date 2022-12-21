@@ -25,7 +25,7 @@ export const NotFound = () => {
         <img className="" src={logoLetter} alt="logo" />
       </div>
 
-      <div className=" shadow-container relative h-[15em] xs:h-[10em] w-[65em] lg:w-[55em] md:w-[45em] 1.5xs:w-[35em] xs:w-[25em] mt-[5em] xs:mt-[5em] bg-black flex justify-center items-center shadow-container">
+      <div className=" shadow-container relative h-[15em] xs:h-[10em] w-[65em] lg:w-[55em] md:w-[45em] sm:w-[35em] xs:w-[25em] mt-[5em] xs:mt-[5em] bg-black flex justify-center items-center shadow-container">
         {half() && <Star color={randomArray(COLORS)} size={2} left={-1} />}
         {half() && <Star color={randomArray(COLORS)} size={2} right={-1} />}
         {half() && <Star color={randomArray(COLORS)} size={2} top={-1} />}

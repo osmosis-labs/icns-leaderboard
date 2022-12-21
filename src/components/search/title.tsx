@@ -16,7 +16,7 @@ export const Container = ({
 
 export const Title = () => {
   return (
-    <div className="chillax text-text-main text-[2.5em] font-[600] uppercase flex items-center lg:text-[2.5em] md:text-[2.5em] 1.5xs:text-[2em] xs:text-[1.5em]">
+    <div className="chillax text-text-main text-[2.5em] font-[600] uppercase flex items-center lg:text-[2.5em] md:text-[2.5em] sm:text-[2em] xs:text-[1.5em]">
       <Container>
         <LetterS
           colorOne={randomArray(COLORS)}
