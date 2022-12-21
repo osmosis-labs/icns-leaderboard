@@ -74,13 +74,13 @@ export const Row = ({
 export const RowSkeleton = ({ type = "basic" }: Partial<RowProps>) => {
   let classNameRow = `grid grid-cols-leaderboard-row shadow-container items-center h-[5em] `;
   if (type === "basic") {
-    classNameRow = `${classNameRow} xs:w-[25em] w-[25em] bg-grey-800 `;
+    classNameRow = `${classNameRow} xs:w-[35em] w-[35em] bg-grey-800 `;
   } else if (type === "third") {
-    classNameRow = `${classNameRow} xs:w-[25em] w-[27.5em] bg-grey-700 font-bold`;
+    classNameRow = `${classNameRow} xs:w-[35em] w-[37.5em] bg-grey-700 font-bold`;
   } else if (type === "second") {
-    classNameRow = `${classNameRow} xs:w-[25em] w-[30em] bg-grey-500 font-bold`;
+    classNameRow = `${classNameRow} xs:w-[35em] w-[40em] bg-grey-500 font-bold`;
   } else if (type === "first") {
-    classNameRow = `${classNameRow} xs:w-[25em] w-[35em] bg-grey-300 font-bold`;
+    classNameRow = `${classNameRow} xs:w-[35em] w-[45em] bg-grey-300 font-bold`;
   }
   return (
     <div className={classNameRow}>
