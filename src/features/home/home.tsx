@@ -17,7 +17,7 @@ export const Home = () => {
     <div className={classNameHome} id="home">
       <GoTop />
 
-      <div className="bg-black h-[5em] w-[15em] mt-[10em] xs:mt-[5em] flex justify-center items-center shadow-container">
+      <div className="bg-black h-[5em] w-[15em] mt-[5em] xs:mt-[5em] flex justify-center items-center shadow-container">
         <img className="" src={logoLetter} alt="logo" />
       </div>
       <Grid
@@ -51,9 +51,9 @@ export const Home = () => {
       <div className="flex justify-center items-center">
         <Grid
           opt={{
-            xl: { rows: 5, columns: 3, nbItem: 2 },
-            lg: { rows: 5, columns: 2, nbItem: 1 },
-            md: { rows: 5, columns: 1, nbItem: 1 },
+            xl: { rows: 6, columns: 3, nbItem: 2 },
+            lg: { rows: 6, columns: 2, nbItem: 1 },
+            md: { rows: 6, columns: 1, nbItem: 1 },
             sm: null,
             xs: null,
           }}
@@ -61,9 +61,9 @@ export const Home = () => {
         <Rules />
         <Grid
           opt={{
-            xl: { rows: 5, columns: 3, nbItem: 2 },
-            lg: { rows: 5, columns: 2, nbItem: 1 },
-            md: { rows: 5, columns: 1, nbItem: 1 },
+            xl: { rows: 6, columns: 3, nbItem: 2 },
+            lg: { rows: 6, columns: 2, nbItem: 1 },
+            md: { rows: 6, columns: 1, nbItem: 1 },
             sm: null,
             xs: null,
           }}
