@@ -25,21 +25,31 @@ export const Rules = () => {
       <Title />
       <div className="h-full mt-[0em] ">
         <p className="text-text-high p-2 w-full">
-          - Base Points:  Registering on Day 1 of ICNS launch (Dec 20, 2022) will grant you 365 points. Day 2 will be 364 points. And so on.
+          <b>Base Points:</b>
+          <ul>
+            <li>- ICNS Launch was on Dec 20, 2022.</li>
+            <li>- Registering on Day 1 earns you 365 points.</li>
+            <li>- Registering on Day 2 earns you 364 points.</li>
+            <li>- And so on...</li>
+          </ul>
         </p>
         <p className="text-text-high p-2 w-full">
-          - Referral Bonus: You will earn 100 points for every person you refer.
-        </p>
-         <p className="text-text-high p-2 w-full">
-          - Friend of Friends: Every second degree referral (someone you referred, refers someone)
-          will earn you 50 points. Every third degree referral earns you 33.33
-          points. Fourth degree referrals are 25 points. And so on...
+          <b>Referral Bonus:</b>
+          <ul>
+            <li>- You will earn 100 points for every person you refer.</li>
+            <li>- For every person that they refer (2nd degree), you get 50 points.</li>
+            <li>- For every person that they refer (3rd degree), you get 33.3 points.</li>
+            <li>- And so on...</li>
+          </ul>
         </p>
         <p className="text-text-high p-2 w-full">
-          - Referee Points:  You will earn 100 points for using someone's referral code.
+          <b>Kickback Points:</b>
+          <ul>
+            <li>- You earn 100 points for using someone's referral code.</li>
+          </ul>
         </p>
         <p className="text-text-high p-2 w-full italic text-[0.8em]">
-          Note: For any new Twitter accounts created after December 19, 2022, no
+          <b>Note:</b> For any new Twitter accounts created after December 19, 2022, no
           points will be granted.
         </p>
       </div>
